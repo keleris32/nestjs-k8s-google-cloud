@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nestjs-k8s-google-cloud
+spec:
+  selector:
+    matchLabels:
+      app: nestjs-k8s-google-cloud
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: nestjs-k8s-google-cloud
+    spec:
+      containers:
+        - name: nestjs-k8s-google-cloud
+          image: keleris32/nestjs-k8s-google-cloud
+          ports:
+            - containerPort: 3000
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: "1"
+            requests:
+              memory: 256Mi
+              cpu: "0.2"
